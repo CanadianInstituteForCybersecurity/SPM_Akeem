@@ -1,0 +1,26 @@
+name: C Program CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up GCC
+      run: sudo apt-get install gcc
+
+    - name: Compile C code
+      run: gcc -o factorial main.c
+
+    - name: Run factorial program
+      run: ./factorial
